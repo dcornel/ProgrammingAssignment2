@@ -9,22 +9,22 @@
 ## in chache and getting the inverse of that matrix.
 
 makeCacheMatrix <- function(x = matrix()) {
-        minverse <- NULL
+        minverse <- NULL #matrix inverse
         
         set <- function (y)
         {
-                x<<- y 
+                x<<- y #store matrix and store in cache
                 minverse <<- NULL 
         }
         
-        get <- function () x 
+        get <- function () x #returning the matrix object
         
-        setInverse <- function(solve) minverse<<- solve #store in cache
-        getInverse <- function() minverse 
+        setInverse <- function(solve) minverse<<- solve #store the value of the matrix inverse in cache
+        getInverse <- function() minverse #get the matrix inverse
         
         list(set = set, get = get,
              setInverse = setInverse,
-             getInverse = getInverse)        
+             getInverse = getInverse) #provide a list of properties for the custom matrix object       
 }
 
 
@@ -40,6 +40,7 @@ cacheSolve <- function(x, ...) {
                 message("getting cached data")
                 return(minverse) #return the value stored in cache. exit the function
         }
+        
         # else (if minverse is null)
         data<- x$get() 
         minverse <- solve(data,...) #compute matrix inverse using solve R function
